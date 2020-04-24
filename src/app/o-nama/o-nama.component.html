@@ -1,0 +1,68 @@
+<div class="container"
+  fxLayout="column"
+  fxLayoutGap="10px">
+
+  <div fxFlex>
+    <div>
+        <h3>O nama</h3>
+        <hr>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <div fxLayout="column" fxLayout.gt-sm="row">
+      <div fxFlex="70">
+        <h2>Naša istorija</h2>
+        <p>Ovo je restoran sa tradicijom i oaza hedonizma koja se nalazi u srcu Beograda. Savršen spoj modernog i tradicionalnog iskustva u kome uživaju sva čula. Za poseban ugođaj uživanja u hrani zaslužan je šef kuhinje Miljana Ristić koja je na osnovu svog bogatog iskustva kreirala jedinstven meni.</p>
+        <p>Iz restorana se pruža spektakularan pogled na grad i reku, a zalazak sunca ima posebnu boju. Osim Beograđana, ovo mesto obožavaju i stranci koji ne propuštaju odlazak u ovaj restoran u svojoj turističkoj turi.</p>
+      </div>
+      <div fxFlex="30">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+            <h2>Činjenice</h2>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <dl>
+              <dt>Osnovan</dt>
+              <dd>3.8.2013</dd>
+              <dt>Porodični restoran</dt>
+              <dd>Porodični recepti</dd>
+              <dt>Prošlogodišnji promet</dt>
+              <dd>60.250.375 dinara</dd>
+              <dt>Zaposleni</dt>
+              <dd>40</dd>
+            </dl>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  
+  <div fxFlex>
+    <mat-card>
+      <blockquote>
+        <h3>"Sve dok vam je u ustima zalogaj hrane, problemi su rešeni – bar za sada"</h3>
+        <footer>-- Franc Kafka
+        </footer>
+      </blockquote>
+    </mat-card>
+  </div>
+
+
+  <div fxFlex>
+    <h2>Lideri</h2>
+    <mat-list *ngIf="lideri">
+        <mat-list-item *ngFor="let lider of lideri">
+            <h4 matLine>{{lider.ime}}</h4>
+            <img matListAvatar src={{lider.slika}} alt={{lider.ime}}>
+            <p matLine>{{lider.radnoMesto}}</p>
+            <p matLine>{{lider.opis}}</p>
+        </mat-list-item>
+    </mat-list>
+    <div [hidden]="lideri">
+      <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+  </div>
+</div>

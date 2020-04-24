@@ -1,0 +1,58 @@
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px">
+
+<mat-card *ngIf="jelo" fxFlex>
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>
+      <h3>{{jelo.ime | uppercase}}</h3>
+    </mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="{{BaseURL + jelo.slika}}" alt={{jelo.ime}}>
+  <mat-card-content>
+    <p>{{jelo.opis}}
+    </p>
+  </mat-card-content>
+</mat-card>
+<div [hidden]="jelo">
+  <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+</div>
+
+<mat-card *ngIf="promocija" fxFlex>
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>
+      <h3>{{promocija.ime | uppercase}}</h3>
+    </mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="{{promocija.slika}}" alt={{promocija.ime}}>
+  <mat-card-content>
+    <p>{{promocija.opis}}
+    </p>
+  </mat-card-content>
+</mat-card>
+<div [hidden]="promocija">
+  <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+</div>
+
+<mat-card *ngIf="lider" fxFlex>
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>
+      <h3>{{lider.ime | uppercase}}</h3>
+    </mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src={{lider.slika}} alt={{lider.ime}} height="250px">
+  <mat-card-content>
+    <p>{{lider.opis}}
+    </p>
+  </mat-card-content>
+</mat-card>
+<div [hidden]="lider">
+  <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+
+</div>

@@ -1,0 +1,70 @@
+<div class="container"
+    fxLayout="row"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center"
+    fxLayoutGap="10px" 
+    fxLayoutGap.xs="0">
+
+  <div fxFlex="40">
+        <mat-card *ngIf="jelo">
+            <mat-card-header>
+                <mat-card-title>
+                    <h3>{{jelo.ime | uppercase}}</h3>
+                </mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="{{BaseURL + jelo.slika}}" alt={{jelo.ime}}>
+            <mat-card-content>
+                <p>{{jelo.opis}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button [routerLink]="['/detalji', prethodni]"><span class="fa fa-chevron-left fa-lg"></span></button>
+                <button mat-button (click)="goBack()">BACK</button>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+                <span class="flex-spacer"></span>
+                <button mat-button [routerLink]="['/detalji', sledeci]"><span class="fa fa-chevron-right fa-lg"></span></button>
+            </mat-card-actions>
+        </mat-card>
+  </div>
+
+  <div fxFlex="40">
+    <mat-list *ngIf="jelo">
+        <h3>Komentari</h3>
+        <mat-list-item *ngFor="let komentar of jelo.komentari">
+            <h4 matLine>{{komentar.komentar}}</h4>
+            <p mat-line> {{komentar.rejting}} zvezdica</p>
+            <p matLine>
+                <span>-- {{komentar.autor}} {{komentar.datum | date}}</span>
+            </p>
+        </mat-list-item>
+    </mat-list>
+    <mat-list *ngIf="komentariForm.valid">
+        <mat-list-item>
+            <h4 matLine> {{komentariForm.get('komentar').value}} </h4>
+            <p matLine> {{komentariForm.get('rejting').value}} zvezdica </p>
+            <p matLine>
+                <span> -- {{komentariForm.get('autor').value}} </span>
+            </p>
+        </mat-list-item>
+    </mat-list>
+    <form novalidate [formGroup]="komentariForm" #kform="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+            <mat-form-field class="full-width">
+                <input matInput formControlName="autor" placeholder="Autor" type="text" required>
+                <mat-error *ngIf="formErrors.autor">{{formErrors.autor}}</mat-error>
+            </mat-form-field>
+            <mat-slider #rejting min="1" max="5" step="1" thumbLabel tickInterval="auto" type="number"></mat-slider>
+            <mat-form-field class="full-width">
+                <textarea matInput formControlName="komentar" placeholder="Vaš komentar" rows=12 required></textarea>
+                <mat-error *ngIf="formErrors.komentar">{{formErrors.komentar}}</mat-error>
+            </mat-form-field>
+        </p>
+        <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="komentariForm.invalid">Submit</button>
+    </form>
+  </div>
+
+  <div [hidden]="jelo">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+</div>
+</div>

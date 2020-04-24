@@ -1,0 +1,84 @@
+<div class="container"
+  fxLayout="column"
+  fxLayoutGap="10px">
+
+  <div fxFlex>
+    <div>
+        <h3>Kontaktirajte nas</h3>
+        <hr>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <h3>Lokacija</h3> 
+    <div fxLayout="column" fxLayout.gt-sm="row">
+      <div fxFlex="50" fxFlexOffset="20px">
+        <h4>Naša adresa</h4>
+        <address>
+          Dunavska 33<br>
+          Palilula<br>
+          BEOGRAD<br>
+          <i class="fa fa-phone"></i>: +381 64 1234 567<br>
+          <i class="fa fa-fax"></i>: +381 69 8765 432<br>
+          <i class="fa fa-envelope"></i>: 
+                <a href="miljana.m@food.com">m@food.com</a>
+        </address>
+        <p></p>
+        <div>
+          <a mat-raised-button href="tel:+381641234567"><i class="fa fa-phone"></i> Call</a>
+          <a mat-raised-button><i class="fa fa-skype"></i> Skype</a>
+          <a mat-raised-button href="miljana.m@food.com"><i class="fa fa-envelope-o"></i> Email</a>
+        </div>
+        </div>
+      <div fxFlex="40">
+        <h4>Mapa naše lokacije</h4>
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex fxFlexOffset="20px" class="form-size">
+    <h3>Pošaljite nam povratnu informaciju</h3>
+    <p>{{ infoForm.value | json }} {{ infoForm.status | json }}</p>
+
+    <form novalidate [formGroup]="infoForm" #iform="ngForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="ime" placeholder="Ime" type="text" required>
+          <mat-error *ngIf="formErrors.ime">{{ formErrors.ime }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="prezime" placeholder="Prezime" type="text" required>
+          <mat-error *ngIf="formErrors.prezime">{{ formErrors.prezime }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="telefon" placeholder="Broj telefona" type="tel" pattern="[0-9]*" required>
+          <mat-error *ngIf="formErrors.telefon">{{ formErrors.telefon }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="email" placeholder="Email" type="email" required>
+          <mat-error *ngIf="formErrors.email">{{ formErrors.email }}</mat-error>
+        </mat-form-field>
+      </p>
+      <table class="form-size">
+        <td>
+          <mat-slide-toggle formControlName="potvrda">Da li možemo da Vas kontaktiramo?</mat-slide-toggle>
+        </td>
+        <td>
+          <mat-select placeholder="?" formControlName="kontaktTip">
+            <mat-option *ngFor="let ktip of kontaktTip" [value]="ktip">
+              {{ ktip }}
+            </mat-option>
+          </mat-select>
+        </td>
+        </table>
+        <p>
+          <mat-form-field class="full-width">
+            <textarea matInput formControlName="poruka" placeholder="Vaša poruka" rows=12></textarea>
+          </mat-form-field>
+        </p>
+        <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="infoForm.invalid">Submit</button>
+      </form>
+    </div>
+</div>

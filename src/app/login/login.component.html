@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+    Login
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+
+<p>{{ korisnik | json }}</p>
+
+<form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Korisničko ime" type="text" [(ngModel)]="korisnik.korisnickoIme" name="korisnickoIme" #korisnickoIme="ngModel" required>
+        <mat-error *ngIf="korisnickoIme.errors?.required">Korisničko ime je obavezno</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Lozinka" type="password" [(ngModel)]="korisnik.lozinka" name="lozinka" #lozinka="ngModel" required>
+        <mat-error *ngIf="lozinka.errors?.required">Lozinka je obavezna</mat-error>
+      </mat-form-field>
+      <mat-checkbox [(ngModel)]="korisnik.zapamti" name="zapamti">Zapamti</mat-checkbox>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginForm.form.invalid">Login</button>
+  </mat-dialog-actions>
+</form>

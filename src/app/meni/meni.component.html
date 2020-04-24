@@ -1,0 +1,25 @@
+<div class="kontejner" 
+     fxLayout="column" 
+     fxLayoutGap="10px">
+
+     <div fxFlex>
+         <div>
+             <h3>Meni</h3>
+             <hr>
+         </div>
+     </div>
+
+     <div fxFlex *ngIf="jela">
+        <mat-grid-list cols="2" rowHeight="200px">
+            <mat-grid-tile *ngFor="let jelo of jela" [routerLink]="['/detalji',jelo.id]">
+                <img height="200px" src="{{BaseURL + jelo.slika}}" alt={{jelo.ime}}>
+                <mat-grid-tile-footer>
+                    <h1> {{jelo.ime | uppercase}} </h1>
+                </mat-grid-tile-footer>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <div [hidden]="jela">
+        <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    <span><img src="/assets/images/logo.png" height=30 width=41></span>
+    <a mat-button routerLink='/pocetna' routerLinkActive='active'><span class="fa fa-home fa-lg"></span> Početna</a>
+    <a mat-button routerLink='/o-nama' routerLinkActive='active'><span class="fa fa-info fa-lg"></span> O nama</a>
+    <a mat-button routerLink='/meni' routerLinkActive='active'><span class="fa fa-list fa-lg"></span> Meni</a>
+    <a mat-button routerLink='/kontakt' routerLinkActive='active'><span class="fa fa-address-card fa-lg"></span> Kontakt</a>
+    <span class="flex-spacer"></span>
+    <a mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span> Login</a>
+  </mat-toolbar>
+  
+  <div class="container jumbotron"
+      fxLayout="row"
+      fxLayout.sm="column" 
+      fxLayout.xs="column" 
+      fxLayoutAlign.xs="start center"
+      fxLayoutAlign.sm="start center" 
+      fxLayoutAlign.gt-sm="center center" 
+      fxLayoutGap="10px">
+  
+    <div fxFlex fxFlex.gt-sm="50%">
+      <h1>Restoran M</h1>
+      <p>Naša jela će zagolicati vaša čula!</p>
+    </div>
+    <div fxFlex fxFlex.gt-sm="20%">
+      <img src="/assets/images/logo.png" alt="Logo">
+    </div>
+    <div fxFlex></div>
+  </div>
